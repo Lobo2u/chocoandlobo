@@ -9,6 +9,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.loboandchoco.databinding.ItemHomeFeedBinding
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import java.lang.StringBuilder
 
 class FeedAdapter(private val context: MainActivity, private val dataList: ArrayList<Feed>):
@@ -16,7 +19,7 @@ class FeedAdapter(private val context: MainActivity, private val dataList: Array
 
     class ViewHolder(private val binding:ItemHomeFeedBinding) :
         RecyclerView.ViewHolder(binding.root){
-        fun bind(context: Context, item:Feed){
+        fun bind(context: Context, item:Feed, position: Int){
             binding.feedTvUserId.text=item.userId
             var likeCount = StringBuilder()
             likeCount.append(context.resources.getString(R.string.home_like_count_before)).append(item.likeCount).append(context.resources.getString(R.string.home_like_count_after))
@@ -28,6 +31,10 @@ class FeedAdapter(private val context: MainActivity, private val dataList: Array
             binding.feedIvProfile.background = ShapeDrawable(OvalShape())
             binding.feedIvImage.clipToOutline = true
 
+            var database : DatabaseReference
+            val db = Firebase.database
+            database = db.getReference("FeedList")
+
 
             //좋아요 버튼
             binding.feedBtnHeart.setOnClickListener{
@@ -35,10 +42,12 @@ class FeedAdapter(private val context: MainActivity, private val dataList: Array
                     binding.feedBtnHeart.setImageResource(R.drawable.ic_heart_off)
                     item.isLIke=false
                     item.likeCount=item.likeCount-1
+                    database.child((position+1).toString()).child("likeCount").setValue(item.likeCount)
                 }else{
                     binding.feedBtnHeart.setImageResource(R.drawable.ic_heart_on)
                     item.isLIke=true
                     item.likeCount=item.likeCount+1
+                    database.child((position+1).toString()).child("likeCount").setValue(item.likeCount)
                 }
                 likeCount= StringBuilder()
                 likeCount.append(context.resources.getString(R.string.home_like_count_before))
@@ -72,7 +81,7 @@ class FeedAdapter(private val context: MainActivity, private val dataList: Array
     }
 
     override fun onBindViewHolder(holder: FeedAdapter.ViewHolder, position: Int) {
-        holder.bind(context, dataList[position])
+        holder.bind(context, dataList[position],position)
     }
 
     override fun getItemCount(): Int {

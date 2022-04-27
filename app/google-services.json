@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "824225541755",
+    "project_id": "loboandchoco",
+    "storage_bucket": "loboandchoco.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:824225541755:android:1a086ffd9ac4f65e44fcde",
+        "android_client_info": {
+          "package_name": "com.example.loboandchoco"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "824225541755-pkmvba52ug3los3kg57vb79qoeie87h5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.loboandchoco",
+            "certificate_hash": "3a22e541ce4163cecc00b01693d700e54207a12e"
+          }
+        },
+        {
+          "client_id": "824225541755-72hq5ab88n4b33limgaucpcmgdoe4h0s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHXipdQpr4ktNUG-SJ8U9H7ETHJPUD4KM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "824225541755-72hq5ab88n4b33limgaucpcmgdoe4h0s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
